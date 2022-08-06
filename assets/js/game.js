@@ -17,19 +17,20 @@ var enemyAttack = 12;
 
 var fight = function(enemyName) {
     while(playerHealth > 0 && enemyHealth > 0){
+      //ask player if they would like to fight or run
         var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
-
+        //If player picks skip confirm then stop loop
         if (promptFight === "skip" || promptFight === "SKIP") {
+              //confirm skip
             var confirmSkip = window.confirm("Are you sure you want to quit?");
+              //If yes(true), leave fight
               if(confirmSkip){
                 window.alert(playerName + " has decided to skip this fight. Goodbye!");
                 playerMoney = playerMoney - 10;
-                console.log("playerMoney" , playerMoney);
+                console.log("playerMoney" , playerMoney)
                 break;
               }
-          }
-
-        
+            }
           // remove enemy's health by subtracting the amount set in the playerAttack variable
           enemyHealth = enemyHealth - playerAttack;
           console.log(
@@ -58,25 +59,25 @@ var fight = function(enemyName) {
           } else {
             window.alert(playerName + " still has " + playerHealth + " health left.");
           }
-        }
-    };
+        }//end of while loop
+    };//end of fight function
 
 
 
+var startGame=function(){
+  for(var i = 0; i < enemyNames.length; i++){
+    if(playerHealth > 0){
+      window.alert("Welcome to Robot Gladiators! Round " + (i+1));
 
-for(var i = 0; i < enemyNames.length; i++){
-  if(playerHeatlh > 0){
-    window.alert("Welcome to Robot Gladiators! Round " + (i+1));
+      var pickedEnemyName = enemyNames[i];
 
-    var pickedEnemyName = enemyNames[i];
+      enemyHealth =50;
 
-    enemyHealth =50;
-
-    fight(pickedEnemyName);
-  }else{
-    window.alert("You have lost your robot in batle! Game Over!");
-    break;
+      fight(pickedEnemyName);
+    } else{
+      window.alert("You have lost your robot in battle! Game Over!");
+      break;
+   }
   }
-   
-}
-    
+};
+startGame();
